@@ -1,15 +1,39 @@
 """
 Primera Actividad Módulo 3: Proyecto - Piedra-Papel-Tijeras
-Versión: 0.5.0
+Versión: 1.0.0
 -------------------------------------
 
-Paso Nº 5: Evaluamos el resultado de la ronda. La consigna indica que debemos seguir el órden:
-            > empate -> victoria (jugador) -> else: derrota (jugador)
+Pasos Nº 6-9: Paso 6: Sumar puntajes en cada ronda según el resultado
+                      > agregamos contador += 1 en cada caso de nuestro if-elif-else
+                        p/ los casos de empate, victoria y derrota
 
-            > crear una estructura de control para los tres casos (if-elif-else)
+              Paso 7: Mostrar mensajes de victoria/derrota/empate
+                      > ya hecho
+
+              Paso 8: Mostramos puntuación actual al comienzo y fin de cada ronda
+                      > agregamos dos prints:
+                          > El primero ANTES de decidir
+                          > El segundo DESPUES de decidir
+
+                      > modificamos el código para que en lugar de mostrar el mensaje con un print
+                        lo almacene y lo muestre después
+
+                      > agregamos un mensaje extra al finalizar el juego
+                      
+              Paso 9: Agregar suspenso antes de mostrar la elección de la computadora
+                      > importamos la librería time
+                      > agreramos una pausa con time.sleep(3) antes de mostrar la elección del bot
+
+############################################################################
+
+ Tareas: Paso 10: Piensa en cómo podrías enseñarle a la computadora para que le gane al jugador más seguido. ¿Te animas?
+         HW: Modificar el programa para que sea una lucha entre bots y nos pregunte cada x cant. de rondas si deseamos
+             detener la simulación
+            
 """
 
 import random
+import time
 
 """ ··· [ Variables ] ··· """
 puntaje_jugador = 0
@@ -69,32 +93,40 @@ while (seguir_jugando):
     else:
         opcion_compu = "VALOR NO VALIDO"
 
-    """ * Lugar para insertar suspenso* """
+    # Suspenso
+    time.sleep(3)
 
-    """ * Espacio para insertar texto * """
+    print("________________________________________________________________________")
+    print(" RONDA #", ronda_actual, " | ELECCION JUGADOR: ", opcion_jugador, " | ELECCION PC: ", opcion_compu)
 
     #########################################################
     
     """ Paso Nº 4: DETERMINAR RESULTADO DE RONDA: """
-
+    resultado_ronda = ""
+    
     ## CASO 1: EMPATE
     if(opcion_jugador == opcion_compu ):
-        print("Es un empate :/")
+        resultado_ronda = "\n" + "Es un empate :/"
+        empates += 1
 
     ## CASO 2: VICTORIA!
     elif( ((opcion_jugador == "Piedra")  and (opcion_compu == "Tijeras")) or
           ((opcion_jugador == "Papel")   and (opcion_compu == "Piedra"))  or
           ((opcion_jugador == "Tijeras") and (opcion_compu == "Papel")) ):
-        print("¡HAS GANADO! :D")
+        resultado_ronda = "\n" + "¡HAS GANADO! :D"
+        puntaje_jugador += 1
 
      ## CASO 3: DERROTA :(
     else:
-        print("Has sido derrotado :(")
-        
-    """ * Espacio para insertar texto * """
+        resultado_ronda = "\n" + "Has sido derrotado :("
+        puntaje_compu += 1
 
-    print("JUGADOR: ", opcion_jugador)
-    print("COMPU: ", opcion_compu)
+    """ Paso Nº 5: MOSTRAR RESULTADO DE RONDA: """
+    
+    print("\n________________________________________________________________________")
+    print(resultado_ronda)
+    print("\n________________________________________________________________________")
+    print(" RONDAS: ", ronda_actual, " | Puntuacion Jugador: ", puntaje_jugador, " | Puntuacion PC: ", puntaje_compu, " | Empates: ", empates)
         
     # Paso Final: PREGUNTAMOS SI QUIERE SEGUIR JUGANDO
 
@@ -105,7 +137,13 @@ while (seguir_jugando):
     
     else:
         seguir_jugando = False
-        print("JUEGO FINALIZADO")
+
+###### JUEGO FINALIZADO ######
+print("________________________________________________________________________")
+print("\n                            RESULTADO FINAL:                            ")
+print("________________________________________________________________________")
+print(" RONDAS: ", ronda_actual, " | Puntuacion Jugador: ", puntaje_jugador, " | Puntuacion PC: ", puntaje_compu, " | Empates: ", empates)
+print("\n\n ¡Gracias por jugar!")
 
 
     
