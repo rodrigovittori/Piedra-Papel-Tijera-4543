@@ -1,15 +1,14 @@
 """
 Primera Actividad Módulo 3: Proyecto - Piedra-Papel-Tijeras
-Versión: 0.4.0
+Versión: 0.5.0
 -------------------------------------
 
-Paso Nº 4: Generamos con random.randint(1-3) la respuesta de la computadora y la almacenamos en una nueva variable
-           llamada opcion_compu; luego, la reemplazamos por el texto equivalente
+Paso Nº 5: Evaluamos el resultado de la ronda. La consigna indica que debemos seguir el órden:
+            > empate -> victoria (jugador) -> else: derrota (jugador)
 
-           > importar random
-           > creamos variable opcion_compu y le asignamos un valor random(1-3)
-           > converimos ese valor random (int) a texto (str)
+            > crear una estructura de control para los tres casos (if-elif-else)
 """
+
 import random
 
 """ ··· [ Variables ] ··· """
@@ -72,6 +71,28 @@ while (seguir_jugando):
 
     """ * Lugar para insertar suspenso* """
 
+    """ * Espacio para insertar texto * """
+
+    #########################################################
+    
+    """ Paso Nº 4: DETERMINAR RESULTADO DE RONDA: """
+
+    ## CASO 1: EMPATE
+    if(opcion_jugador == opcion_compu ):
+        print("Es un empate :/")
+
+    ## CASO 2: VICTORIA!
+    elif( ((opcion_jugador == "Piedra")  and (opcion_compu == "Tijeras")) or
+          ((opcion_jugador == "Papel")   and (opcion_compu == "Piedra"))  or
+          ((opcion_jugador == "Tijeras") and (opcion_compu == "Papel")) ):
+        print("¡HAS GANADO! :D")
+
+     ## CASO 3: DERROTA :(
+    else:
+        print("Has sido derrotado :(")
+        
+    """ * Espacio para insertar texto * """
+
     print("JUGADOR: ", opcion_jugador)
     print("COMPU: ", opcion_compu)
         
@@ -85,3 +106,6 @@ while (seguir_jugando):
     else:
         seguir_jugando = False
         print("JUEGO FINALIZADO")
+
+
+    
